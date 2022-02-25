@@ -1,5 +1,6 @@
 <?php
 include "./includes/header.php";
+include "./crud.php";
 ?>
 <header class="hero">
     <h1>For All the good Grown and Puppies, <span>Woof!</span></h1>
@@ -10,28 +11,17 @@ include "./includes/header.php";
         <h2>Our Best Sellers</h2>
         <button>View all &#8594;</button>
     </header>
+    <?php if($featured->rowCount() > 0) {?>
     <article class="card-container">
+        <?php while($row = $featured->fetch()) { ?>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="">
-            <label>Waterproof Coat</label>
-            <span>$90</span>
+            <img src="<?= $row['image'] ?>" alt="<?= $row['title'] ?>">
+            <label><?= $row['title'] ?></label>
+            <span>$<?= $row['price'] ?></span>
         </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1600369671608-7aad7dac5236?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="">
-            <label>Dog Bed</label>
-            <span>$155</span>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1508948956644-0017e845d797?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=617&q=80" alt="">
-            <label>Red Collar</label>
-            <span>$45</span>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1561495376-dc9c7c5b8726?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="">
-            <label>Food and water Bowl</label>
-            <span>$30</span>
-        </div>
+        <?php }?>
     </article>
+    <?php }?>
 </section>
 <section class="explore">
     <h2>Explore Categories</h2>
